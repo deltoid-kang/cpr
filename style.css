@@ -1,0 +1,490 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.container {
+  border: 5px solid #ededed;
+
+  width: 100%;
+  max-width: 400px;
+  min-width: 250px;
+  height: 800px;
+  max-height: 700px;
+  min-height: 700px;
+
+  position: relative;
+
+  overflow: hidden;
+
+  background-color: #353535;
+  /* z-index: -1; */
+}
+.container.storyP::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(47, 47, 47, 0.59);
+}
+
+.container .content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.container .content .guide-cont {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  opacity: 0;
+  min-height: 86px;
+  margin-top: 10px;
+  margin-right: 20px;
+  z-index: 1;
+}
+.container .content .guide-cont.active {
+  opacity: 1;
+}
+.container .content .guide-cont.active .fairy {
+  width: 60px;
+}
+.container .content .guide-cont.active .word {
+  flex: 1;
+  position: relative;
+  margin-left: 30px;
+  padding: 10px;
+  width: 100%;
+  height: 60px;
+  border-radius: 10px;
+  background-color: #eef6f6;
+  border: 3px solid #001e1c;
+}
+.container .content .guide-cont.active .word:after {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: -30px;
+  border-right: 30px solid #001e1c;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+}
+
+.container .content .chat-cont {
+  background-color: #ededed;
+  padding: 30px;
+  padding-left: 10px;
+  height: 120px;
+
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+
+  position: relative;
+  display: flex;
+}
+.container .content .chat-cont span {
+  padding-top: 20px;
+  padding-left: 20px;
+}
+.container .content .chat-cont .npc img {
+  width: 100px;
+  display: none;
+}
+.container .content .chat-cont .npc img.active {
+  width: 100px;
+  display: block;
+}
+.container .content .chat-cont .arrow {
+  width: 0;
+  height: 0;
+  border-bottom: 12px solid transparent;
+  border-top: 12px solid transparent;
+  border-left: 20px solid rgb(88, 88, 88);
+  border-right: 50px solid transparent;
+  transform: rotate(90deg);
+
+  animation: blink-effect 1.5s step-end infinite;
+  opacity: 1;
+
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+}
+@keyframes blink-effect {
+  60% {
+    opacity: 0;
+  }
+}
+
+.container .content .scenario {
+  align-items: center;
+  justify-content: center;
+  display: none;
+
+  height: calc(700px - 266px);
+  /* overflow: hidden; */
+}
+.container .content .scenario.active {
+  display: flex;
+}
+.container .content .scenario img {
+  width: 100%;
+}
+.container .content .scenario img.bg {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+}
+.container .content .scenario img.npc-nurce {
+  position: absolute;
+  top: 300px;
+  left: 370px;
+  width: 70px;
+  transform: translate(-50%, -50%);
+}
+
+/* 현장 안전 확인 */
+.container .content .cpr-cont.sc-0 {
+  position: relative;
+}
+.container .content .cpr-cont.sc-0 .rock-list {
+  display: none;
+}
+.container .content .cpr-cont.sc-0 .rock-list.active {
+  display: block;
+}
+.container .content .cpr-cont.sc-0 .rock-list img {
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  transform: translate(-50%, -50%);
+  animation: rock-effect 1.5s infinite; /* 애니메이션은 계속 */
+}
+.container .content .cpr-cont.sc-0 .rock-list img.remove {
+  display: none;
+}
+.container .content .cpr-cont.sc-0 .rock-list img:nth-child(1) {
+  left: 100px;
+  top: 100px;
+}
+.container .content .cpr-cont.sc-0 .rock-list img:nth-child(2) {
+  right: 40px;
+  top: 70px;
+}
+.container .content .cpr-cont.sc-0 .rock-list img:nth-child(3) {
+  left: 120px;
+  bottom: 40px;
+}
+@keyframes rock-effect {
+  50% {
+    width: 85px;
+    height: 85px;
+  }
+}
+/* 환자 의식 확인 */
+.container .content .cpr-cont {
+  position: relative;
+  justify-content: center;
+  display: none;
+}
+.container .content .cpr-cont.active {
+  display: flex;
+}
+.container .content .cpr-cont .heap {
+  width: 80%;
+  margin-top: 30px;
+}
+.container .content .cpr-cont.sc-1 .guide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+.container .content .cpr-cont.sc-1 .guide.active {
+  display: block;
+}
+.container .content .cpr-cont.sc-1 .guide .guide-line {
+  width: 60px;
+  height: 60px;
+  border: 3px dotted red;
+  border-radius: 50px;
+  position: absolute;
+  z-index: 1;
+}
+.container .content .cpr-cont.sc-1 .guide .guide-line.active::before {
+  content: "";
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+
+  border: 10px solid rgba(255, 0, 0, 0.316);
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.container .content .cpr-cont.sc-1 .guide .guide-line:first-child {
+  top: 110px;
+  left: 100px;
+}
+.container .content .cpr-cont.sc-1 .guide .guide-line:last-child {
+  top: 110px;
+  right: 100px;
+}
+.container .content .cpr-cont.sc-1 .guide .guide-line.active::before {
+  animation: rhythm-effect 1.5s infinite;
+}
+@keyframes rhythm-effect {
+  50% {
+    width: 0px;
+    height: 0px;
+  }
+  80% {
+    width: 40px;
+    height: 40px;
+  }
+}
+/* 도움요청 */
+.container .content .cpr-cont.sc-2 {
+  position: initial;
+}
+.container .content .cpr-cont.sc-2 img.npc-nurce.active {
+  cursor: pointer;
+  animation: npc-effect 1.5s infinite;
+  z-index: 2;
+}
+@keyframes npc-effect {
+  50% {
+    width: 74px;
+  }
+}
+.container .content .cpr-cont.sc-2 img.npc-nurce.move {
+  cursor: pointer;
+  animation: npcactive-effect 2s linear forwards;
+  content: url(./img/npc/nurse-2-0.png);
+}
+@keyframes npcactive-effect {
+  20% {
+    top: 200px;
+    left: 370px;
+    content: url(./img/npc/nurse-2-gif.gif);
+  }
+  100% {
+    top: 200px;
+    left: -70px;
+    content: url(./img/npc/nurse-2-gif.gif);
+  }
+}
+.container .content .cpr-cont.sc-2 .codeblue {
+  position: absolute;
+  width: 400px;
+  height: 800px;
+  background-color: red;
+  opacity: 0.3;
+  z-index: 1;
+  animation: blue-effect 1.5s infinite;
+  display: none;
+}
+.container .content .cpr-cont.sc-2 .codeblue.active {
+  display: block;
+}
+@keyframes blue-effect {
+  50% {
+    opacity: 0.1;
+  }
+}
+/* 호흡과 맥박 확인 */
+.container .content .cpr-cont.sc-3 .guide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+.container .content .cpr-cont.sc-3 .guide.active {
+  display: block;
+}
+.container .content .cpr-cont.sc-3 .guide .guide-line {
+  width: 30px;
+  height: 30px;
+  border: 3px dotted red;
+  border-radius: 50px;
+  position: absolute;
+  z-index: 1;
+}
+.container .content .cpr-cont.sc-3 .guide .guide-line.active::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  border-radius: 50px;
+
+  border: 10px solid rgba(255, 0, 0, 0.316);
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.container .content .cpr-cont.sc-3 .guide .guide-line:first-child {
+  top: 80px;
+  left: 190px;
+}
+.container .content .cpr-cont.sc-3 .guide .guide-line:last-child {
+  top: 124px;
+  left: 204px;
+}
+.container .content .cpr-cont.sc-3 .guide .guide-line.active::before {
+  animation: breath-effect 1.5s infinite;
+}
+@keyframes breath-effect {
+  50% {
+    width: 0px;
+    height: 0px;
+  }
+}
+
+/* 심폐소생게임 */
+.container .content .cpr-cont.sc-4 {
+  position: relative;
+  overflow: hidden;
+}
+.container .content .cpr-cont.sc-4 .cpr {
+  display: none;
+}
+.container .content .cpr-cont.sc-4 .cpr.active {
+  display: block;
+}
+.container .content .cpr-cont.sc-4 .cpr .standard {
+  width: 50px;
+  height: 50px;
+
+  border: 3px dashed red;
+  border-radius: 50px;
+
+  position: absolute;
+  z-index: 10;
+  left: 55%;
+  top: 48%;
+  transform: translate(-50%, -50%);
+
+  transition: 0.7s;
+}
+.container .content .cpr-cont.sc-4 .cpr .standard::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background-color: red;
+
+  border-radius: 20px;
+
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.container .content .cpr-cont.sc-4 .cpr .standard.complate {
+  border: 10px dashed yellow;
+}
+.container .content .cpr-cont.sc-4 .cpr .cpr-line {
+  width: 800px;
+  height: 800px;
+  border: 1px solid red;
+  border-radius: 1000px;
+
+  position: absolute;
+  left: 55%;
+  top: 48%;
+  transform: translate(-50%, -50%);
+
+  animation: cpr-effect 1.5s infinite;
+}
+@keyframes cpr-effect {
+  100% {
+    width: 0px;
+    height: 0px;
+  }
+}
+
+/* cpr */
+.popup-cont .btn {
+  position: absolute;
+  top: 460px;
+  left: 30px;
+
+  width: 55px;
+  height: 55px;
+  border-radius: 55px;
+}
+.popup-cont .btn img.cpr {
+  border-radius: 500px;
+  width: 55px;
+  height: 55px;
+
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  background-color: white;
+  border: 2px solid #14a0d7;
+  cursor: pointer;
+
+  animation: popupBtn-effect 1.5s infinite;
+}
+@keyframes popupBtn-effect {
+  50% {
+    width: 50px;
+    height: 50px;
+  }
+}
+.popup-cont .alert {
+  width: 350px;
+  height: 653px;
+  border: 3px solid #001e1c;
+  background-color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  z-index: 10;
+
+  display: none;
+}
+.popup-cont .alert.active {
+  display: block;
+}
+.popup-cont .alert .content {
+  background-color: gray;
+  position: relative;
+  overflow: hidden;
+}
+.popup-cont .alert .content .bg {
+  width: 350px;
+  height: 653px;
+}
+.popup-cont .alert .content .close-btn {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 25px;
+  height: 25px;
+
+  cursor: pointer;
+
+  background-color: white;
+  border: 3px solid #001e1c;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.popup-cont .alert .content .close-btn img {
+  width: 20px;
+}

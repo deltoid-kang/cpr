@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link rel="stylesheet" href="./style.css" />
+    <script type="module" src="./data.js"></script>
+    <script type="module" src="./script.js"></script>
+
+    <!-- <body
+      oncontextmenu="return false"
+      onselectstart="return false"
+      ondragstart="return false"
+      onkeydown="return false"
+    ></body> -->
+  </head>
+  <body>
+    <div class="container">
+      <div class="content">
+        <div class="guide-cont">
+          <img class="fairy" src="./img/thor.png" alt="" />
+          <div class="word"></div>
+        </div>
+
+        <div class="scenario-cont">
+          <div class="scenario active">
+            <img class="bg" src="./img/scenario-2.png" alt="" />
+            <img src="./img/npc/nurse-2.png" alt="" class="npc-nurce">
+          </div>
+
+          <!-- 현장 안전 확인 -->
+          <div class="scenario cpr-cont sc-0">
+            <img class="heap" src="./img/heap.png" alt="" />
+            <div class="rock-list">
+              <img src="./img/obj/rock.png" alt="" />
+              <img src="./img/obj/rock.png" alt="" />
+              <img src="./img/obj/rock.png" alt="" />
+            </div>
+          </div>
+          <!-- 환자 의식 확인 -->
+          <div class="scenario cpr-cont sc-1">
+            <img class="heap" src="./img/heap.png" alt="" />
+            <div class="guide">
+              <div class="guide-line active"></div>
+              <div class="guide-line"></div>
+            </div>
+          </div>
+          <!-- 도움요청 -->
+          <div class="scenario cpr-cont sc-2">
+            <div class="codeblue"></div>
+            <img class="bg" src="./img/scenario-2.png" alt="" />
+            <img src="./img/npc/nurse-2.png" alt="" class="npc-nurce">
+          </div>
+          <!-- 호흡과 맥박 확인 -->
+          <div class="scenario cpr-cont sc-3">
+            <img class="heap" src="./img/heap.png" alt="" />
+            <div class="guide">
+              <div class="guide-line active"></div>
+              <div class="guide-line"></div>
+            </div>
+          </div>
+          <!-- 심폐소생게임 (가장중요) -->
+          <div class="scenario cpr-cont sc-4">
+            <img class="heap" src="./img/heap.png" alt="" />
+            <div class="cpr">
+              <div class="standard"></div>
+              <div class="cpr-line"></div>
+            </div>
+          </div>
+
+          <div class="scenario">
+            <img class="bg" src="./img/scenario-2.png" alt="" />
+          </div>
+        </div>
+
+        <div class="chat-cont">
+          <div class="npc">
+            <img class="active" src="./img/npc/nurse-1.png" alt="" />
+            <img src="./img/npc/nurse-2.png" alt="" />
+            <img src="./img/npc/citizen-2.png" alt="" />
+            <img src="./img/npc/patient.png" alt="" />
+          </div>
+          <span></span>
+          <div class="arrow"></div>
+        </div>
+
+        <div class="popup-cont">
+          <div class="btn">
+            <img class="cpr" src="./img/icon/cpr_icon2.png" alt="" />
+          </div>
+          <div class="alert">
+            <div class="content">
+              <img class="bg" src="./img/cpr_note.jpg" alt="" />
+              <div class="close-btn">
+                <img src="./img/icon/close_icon.png" alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
