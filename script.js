@@ -65,6 +65,10 @@ function scenarioContent() {
 }
 
 function nextchat() {
+  if (time_state) {
+    time_start = new Date().getTime();
+    time_state = false;
+  }
   if (progress >= scenarioData[session].length - 1) {
     if (session >= scenarioData.length - 1) return;
 
@@ -73,6 +77,9 @@ function nextchat() {
     progress += 1;
     fairyText();
   }
+
+  scoreFunction();
+
   chat.innerHTML = scenarioData[session][progress].word;
 
   NPC[npc_type].classList.remove("active");
@@ -211,10 +218,14 @@ guide_lines_breath[1].addEventListener("click", function (event) {
 // 심폐소생게임
 let cpr_state = true;
 let cpr_i = 0;
+let cpr_x_i = 0;
 const audio = new Audio("110BPM_BEAT.mp3");
 audio.currentTime = 0;
 audio.loop = true;
 audio.volume = 0.5;
+let time_state = true;
+let time_start = null; // 시간 측정
+let time_end = null; // 시간 측정
 function cprScript4() {
   document
     .querySelector(".container .content .cpr-cont.sc-4 .cpr")
@@ -233,11 +244,11 @@ cpr_standard.addEventListener("click", function () {
     cpr_standard.classList.add("complate");
     setTimeout(() => {
       cpr_standard.classList.remove("complate");
-    }, 500);
+    }, 200);
     cpr_i += 1;
 
     fairyCont.classList.add("active");
-    fairyCont_word.innerHTML = `성공했어요! (${cpr_i}/30)`;
+    fairyCont_word.innerHTML = `성공했어요! (${cpr_i}/30)<br/>실패했어요. (${cpr_x_i})`;
 
     cpr_state = false;
     setTimeout(() => {
@@ -245,6 +256,8 @@ cpr_standard.addEventListener("click", function () {
     }, 500);
 
     if (cpr_i >= 30) {
+      time_end = new Date().getTime();
+
       audio.pause();
 
       document
@@ -258,6 +271,7 @@ cpr_standard.addEventListener("click", function () {
   } else {
     fairyCont.classList.add("active");
     fairyCont_word.innerHTML = "타이밍을 맞춰서 다시 해봐요.";
+    cpr_x_i += 1;
   }
 });
 document
@@ -265,13 +279,53 @@ document
   .addEventListener("click", function () {
     fairyCont.classList.add("active");
     fairyCont_word.innerHTML = "중앙에서 다시 해봐요.";
+    cpr_x_i += 1;
   });
 document
   .querySelector(".container .content .cpr-cont.sc-4 .cpr .cpr-line")
   .addEventListener("click", function () {
     fairyCont.classList.add("active");
     fairyCont_word.innerHTML = "중앙에서 다시 해봐요.";
+    cpr_x_i += 1;
   });
+
+// 최종 점수
+function scoreFunction() {
+  if (
+    scenarioData[scenarioData.length - 1][
+      scenarioData[scenarioData.length - 1].length - 1
+    ].word == scenarioData[session][progress].word
+  ) {
+    const PERCENTS = document.querySelectorAll(
+      ".score-cont .mark .detail .reply"
+    );
+    setTimeout(() => {
+      document.querySelector(".score-cont").classList.add("active");
+    }, 1000);
+
+    const score = (100 - (cpr_x_i / (cpr_i + cpr_x_i)) * 100).toFixed(1);
+
+    PERCENTS[0].innerHTML = score;
+
+    const time = time_end - time_start;
+    const totalSeconds = Math.floor(time / 1000);
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+    const formattedTime = `${String(minutes).padStart(2, "0")}:${String(
+      seconds
+    ).padStart(2, "0")}`;
+    PERCENTS[1].innerHTML = formattedTime;
+
+    const STARS = document.querySelectorAll(".score-cont .score .star");
+    if (score >= 65) {
+    } else if (score >= 30) {
+      STARS[2].classList.add("wrong");
+    } else {
+      STARS[1].classList.add("wrong");
+      STARS[2].classList.add("wrong");
+    }
+  }
+}
 
 //   cpr 교육자료 팝업
 const PopupBtn = document.querySelector(".popup-cont .btn img.cpr");

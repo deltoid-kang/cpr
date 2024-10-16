@@ -74,5 +74,6 @@ export const fairyData = [
   { word: "환자의 코 호흡과 목 맥박을 확인하세요.", xy: 0 },
   { word: "", xy: 2 },
   { word: "타이밍에 맞추어 가슴을 누르세요", xy: 1 },
+  { word: "수고하셨습니다.<br/>점수를 확인해주세요.", xy: 0 },
   { word: "", xy: 100 },
 ];

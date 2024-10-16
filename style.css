@@ -372,7 +372,7 @@ body {
   top: 48%;
   transform: translate(-50%, -50%);
 
-  transition: 0.7s;
+  transition: 0.2s;
 }
 .container .content .cpr-cont.sc-4 .cpr .standard::before {
   content: "";
@@ -388,11 +388,11 @@ body {
   transform: translate(-50%, -50%);
 }
 .container .content .cpr-cont.sc-4 .cpr .standard.complate {
-  border: 10px dashed yellow;
+  border: 8px dashed yellow;
 }
 .container .content .cpr-cont.sc-4 .cpr .cpr-line {
-  width: 800px;
-  height: 800px;
+  width: 300px;
+  height: 300px;
   border: 1px solid red;
   border-radius: 1000px;
 
@@ -401,7 +401,7 @@ body {
   top: 48%;
   transform: translate(-50%, -50%);
 
-  animation: cpr-effect 1.5s infinite;
+  animation: cpr-effect 0.545s infinite;
 }
 @keyframes cpr-effect {
   100% {
@@ -410,7 +410,7 @@ body {
   }
 }
 
-/* cpr */
+/* popup */
 .popup-cont .btn {
   position: absolute;
   top: 460px;
@@ -487,4 +487,102 @@ body {
 }
 .popup-cont .alert .content .close-btn img {
   width: 20px;
+}
+
+/* score-cont */
+.score-cont {
+  position: absolute;
+  width: 250px;
+  height: 150px;
+  background-image: linear-gradient(135deg, white, #a4c2f7);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 30px;
+  border: 5px solid white;
+
+  box-shadow: 0px 0px 10px white;
+
+  display: none;
+}
+.score-cont.active {
+  display: block;
+}
+.score-cont .score {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  top: -76px;
+}
+.score-cont .score .star {
+  color: #ededed;
+  font-size: 100px;
+  position: relative;
+  margin: 0 -10px;
+}
+.score-cont .score .star::after {
+  content: "★";
+  position: absolute;
+  color: yellow;
+  font-size: 80px;
+  top: 52%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.score-cont .score .star.wrong::after {
+  color: #f8f8f8;
+}
+.score-cont .score .star:nth-child(2) {
+  margin-top: -10px;
+}
+.score-cont .score .star:nth-child(2)::after {
+  margin-top: -5px;
+}
+.score-cont .mark {
+  width: 100%;
+  position: absolute;
+  top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.score-cont .mark .detail {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+}
+.score-cont .mark .detail .title {
+  font-weight: bold;
+  font-size: 30px;
+  width: 90px;
+  text-align: center;
+
+  -webkit-text-stroke: 1px white;
+}
+.score-cont .mark .detail .reply {
+  font-size: 26px;
+  margin-left: 10px;
+  width: 70px;
+  text-align: center;
+  position: relative;
+}
+.score-cont .mark .detail .reply.percent::after {
+  content: "%";
+}
+.score-cont .mark .detail .reply::before {
+  content: "";
+  position: absolute;
+  width: 70px;
+  height: 5px;
+
+  left: 0;
+  bottom: -3px;
+  z-index: 0;
+
+  transform: rotate(-5deg);
+
+  border-top: 2px solid yellow;
+  border-bottom: 2px solid yellow;
 }
